@@ -1,0 +1,57 @@
+.live-pulsar {
+    --color:#55dc53;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .label {
+    padding-left: 0.5em;
+    color: var(--color);
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+  .pulsar {
+    width: 0.8em;
+    height: 0.8em;
+    position: relative;
+    border-radius: 50%;
+    background-color: var(--color);
+    &::before,
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: pulse 2s infinite ease-out;
+      background-color: var(--color);
+      border-radius: 50%;
+      animation-iteration-count: infinite;
+    }
+
+    &::after {
+      animation-delay: 0.75s;
+    }
+
+    &::before {
+      animation-delay: 0s;
+    }
+  }
+}
+
+
+@keyframes pulse {
+    0% {
+      opacity: 0.75;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform:translate(-50%, -50%) 
+      scale(2);
+    }
+  }
+  

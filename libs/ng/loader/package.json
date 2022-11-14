@@ -1,0 +1,30 @@
+{
+  "name": "@noilda/ng-loader",
+  "version": "0.0.1-rc1",
+  "peerDependencies": {
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "private": false,
+  "description": "Loaders library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noilda/libs",
+    "directory": "libs/ng/loader"
+  },
+  "keywords": [
+    "Angular",
+    "Loaders"
+  ],
+  "author": {
+    "name": "Adlion Myftarago",
+    "email": "contact@noilda.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noilda/libs/-/issues"
+  }
+}

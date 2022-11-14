@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@noilda/live-pulsar": ["libs/ng/live-pulsar/src/index.ts"],
+      "@noilda/ng-loader": ["libs/ng/loader/src/index.ts"],
+      "@noilda/nx-go": ["libs/nx/go/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

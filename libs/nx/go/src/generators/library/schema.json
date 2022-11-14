@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "Library",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Library name"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Library tags (used for linting)",
+      "alias": "t"
+    },
+    "namingConvention": {
+      "type": "string",
+      "enum": [
+        "NAME",
+        "CLASSNAME",
+        "PROPERTYNAME",
+        "CONSTANTNAME",
+        "FILENAME",
+        "SNAKE",
+        "CAMEL",
+        "PASCAL",
+        "KEBAP"
+      ],
+      "description": "Follow Go naming conventions (Case sensitive)",
+      "default": "SNAKE"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A subirectory where application will be placed",
+      "alias": "dir"
+    },
+    "simpleModuleName": {
+      "type": "boolean",
+      "description": "Keep the module name simple (when using `--directory`)",
+      "default": false
+    },
+    "publishable": {
+      "type": "boolean",
+      "description": "Is this module publishable. This will create a separate go.mod for the library.",
+      "default": false
+    },
+    "importPath": {
+      "type": "string",
+      "description": "In go this is the repository. In case when this is a nested module generator will automatically add the path to subfolders."
+    }
+  },
+  "required": ["name"]
+}

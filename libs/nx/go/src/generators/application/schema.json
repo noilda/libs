@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "Application",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Application name"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Application tags (used for linting)",
+      "alias": "t"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A subirectory where applciation will be placed",
+      "alias": "dir"
+    },
+    "port": {
+      "type": "number",
+      "description": "A port for serving the api"
+    }
+  },
+  "required": ["name"]
+}

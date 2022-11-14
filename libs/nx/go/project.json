@@ -1,0 +1,61 @@
+{
+  "name": "nx-go",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nx/go/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nx/go",
+        "main": "libs/nx/go/src/index.ts",
+        "tsConfig": "libs/nx/go/tsconfig.lib.json",
+        "assets": [
+          "libs/nx/go/*.md",
+          {
+            "input": "./libs/nx/go/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx/go/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx/go",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/nx/go",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/nx/go/**/*.ts",
+          "libs/nx/go/generators.json",
+          "libs/nx/go/executors.json",
+          "libs/nx/go/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/nx/go/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

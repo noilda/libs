@@ -1,0 +1,12 @@
+package main
+
+import (
+	"testing"
+)
+
+func TestMain(t *testing.T) {
+	result := main()
+	if result != "main works" {
+		t.Error("Expected main to work")
+	}
+}

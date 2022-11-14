@@ -1,0 +1,6 @@
+package <%= normalizedName %>
+
+func <%= className %>(name string) string {
+	result := "<%= className %> " + name
+	return result
+}
