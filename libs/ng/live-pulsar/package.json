@@ -1,6 +1,6 @@
 {
   "name": "@noilda/ng-live-pulsar",
-  "version": "0.0.1-rc1",
+  "version": "0.0.1-rc2",
   "peerDependencies": {
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0"
@@ -22,6 +22,6 @@
   "author": "Adlion Myftarago",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/noilda/libs/-/issues"
+    "url": "https://github.com/noilda/libs/issues"
   }
 }

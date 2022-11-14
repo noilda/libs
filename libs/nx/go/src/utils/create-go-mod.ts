@@ -11,8 +11,8 @@ export function createGoMod(tree: Tree, options: ILibraryNormalizedBaseSchema) {
     tree.write(
       filePath,
       `module ${
-        options?.importPath
-          ? join(options.importPath, options.projectRoot)
+        options?.moduleName
+          ? join(options.moduleName, options.projectRoot)
           : options.normalizedName
       }\ngo ${major}.${minor}\n`
     );

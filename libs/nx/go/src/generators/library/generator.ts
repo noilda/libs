@@ -23,7 +23,7 @@ export default async function (tree: Tree, options: ILibraryGeneratorSchema) {
     tags: normalizedOptions.normalizedTags,
   });
 
-  if (normalizedOptions.importPath) {
+  if (options.moduleName) {
     createGoMod(tree, normalizedOptions);
   }
   

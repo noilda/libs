@@ -45,14 +45,9 @@
       "description": "Keep the module name simple (when using `--directory`)",
       "default": false
     },
-    "publishable": {
-      "type": "boolean",
-      "description": "Is this module publishable. This will create a separate go.mod for the library.",
-      "default": false
-    },
-    "importPath": {
+    "moduleName": {
       "type": "string",
-      "description": "In go this is the repository. In case when this is a nested module generator will automatically add the path to subfolders."
+      "description": "This will be the module name. Result moduleName + '/libs' + directory + name"
     }
   },
   "required": ["name"]

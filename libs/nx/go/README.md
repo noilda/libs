@@ -16,7 +16,7 @@
 
 ## Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/noilda/libs/-/issues) or submit PRs.
+Feel free to dive in! [Open an issue](https://github.com/noilda/libs/issues) or submit PRs.
 
 ## License
 
