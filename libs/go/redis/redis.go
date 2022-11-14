@@ -14,10 +14,11 @@ type RedisConfig struct {
 	Db   string `mapstructure:"MAIN_DB" validate:"required"`
 }
 
-var lLog lLogger
+var lLog Logger
 
-func UseLogger(logger lLogger) {
+func UseLogger(logger Logger) {
 	lLog = logger
+	lLog = Logger(&lLogger{})
 }
 
 type Logger interface {
