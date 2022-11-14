@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "env",
+  "projectType": "library",
+  "sourceRoot": "libs/go/echo/env/env",
+  "targets": {
+    "test": {
+      "executor": "@noilda/nx-go:test"
+    },
+    "lint": {
+      "executor": "@noilda/nx-go:lint"
+    }
+  },
+  "tags": []
+}

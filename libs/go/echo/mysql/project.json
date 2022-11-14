@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "mysql",
+  "projectType": "library",
+  "sourceRoot": "libs/go/echo/mysql/mysql",
+  "targets": {
+    "test": {
+      "executor": "@noilda/nx-go:test"
+    },
+    "lint": {
+      "executor": "@noilda/nx-go:lint"
+    }
+  },
+  "tags": []
+}
