@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/go-redis/redis/v8"
+	"go.uber.org/zap"
 )
 
 type RedisConfig struct {
@@ -14,22 +15,7 @@ type RedisConfig struct {
 	Db   string `mapstructure:"MAIN_DB" validate:"required"`
 }
 
-var lLog Logger
-
-func UseLogger(logger Logger) {
-	lLog = logger
-	lLog = Logger(&lLogger{})
-}
-
-type Logger interface {
-	Info(msg string, args ...interface{})
-}
-
-type lLogger struct{}
-
-func (*lLogger) Info(msg string, args ...interface{}) { fmt.Println(msg) }
-
-func Init(config RedisConfig) (*redis.Client, error) {
+func Init(config RedisConfig, logger *zap.Logger) (*redis.Client, error) {
 	db, err := strconv.Atoi(config.Db)
 	if err != nil {
 		return nil, fmt.Errorf("unable to parse redis DB")
@@ -40,7 +26,7 @@ func Init(config RedisConfig) (*redis.Client, error) {
 		IdleTimeout: 240 * time.Second,
 	})
 
-	lLog.Info("Redis connected.")
+	logger.Info("Redis connected.")
 
 	// {
 	// 	MaxIdle:     50,
