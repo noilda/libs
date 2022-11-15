@@ -15,7 +15,7 @@ type RedisConfig struct {
 	Db   string `mapstructure:"MAIN_DB" validate:"required"`
 }
 
-func Init(config RedisConfig, logger *zap.Logger) (*redis.Client, error) {
+func New(config RedisConfig, logger *zap.Logger) (*redis.Client, error) {
 	db, err := strconv.Atoi(config.Db)
 	if err != nil {
 		return nil, fmt.Errorf("unable to parse redis DB")

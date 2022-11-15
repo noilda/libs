@@ -7,21 +7,8 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"go.uber.org/zap"
 )
-
-var lLog lLogger
-
-func UseLogger(logger lLogger) {
-	lLog = logger
-}
-
-type Logger interface {
-	Info(msg string, args ...interface{})
-}
-
-type lLogger struct{}
-
-func (*lLogger) Info(msg string, args ...interface{}) { fmt.Println(msg) }
 
 type DbConfig struct {
 	DB          string `mapstructure:"DB" validate:"required"`
@@ -34,7 +21,7 @@ type DbConfig struct {
 	MaxIdleConn string `mapstructure:"MAX_IDLE_CONNECTIONS" validate:"required"`
 }
 
-func Init(config DbConfig) (*sqlx.DB, error) {
+func New(config DbConfig, logger *zap.Logger) (*sqlx.DB, error) {
 	dbUrl := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4,collation=utf8mb4_general_ci,parseTime=true",
 		config.User,
 		config.Password,
@@ -53,21 +40,21 @@ func Init(config DbConfig) (*sqlx.DB, error) {
 	if err == nil {
 		db.SetMaxIdleConns(maxCon)
 	} else {
-		lLog.Info("Parsing DBMaxIdleConn failed. Using Default.")
+		logger.Info("Parsing DBMaxIdleConn failed. Using Default.")
 	}
 	openConn, err := strconv.Atoi(config.MaxOpenConn)
 	if err == nil {
 		db.SetMaxOpenConns(openConn)
 	} else {
-		lLog.Info("Parsing DBMaxOpenConn failed. Using Default.")
+		logger.Info("Parsing DBMaxOpenConn failed. Using Default.")
 	}
 	lifeConn, err := strconv.Atoi(config.MaxLifetime)
 	if err == nil {
 		db.SetConnMaxLifetime(time.Duration(lifeConn))
 	} else {
-		lLog.Info("Parsing DBMaxLifetime failed. Using Default.")
+		logger.Info("Parsing DBMaxLifetime failed. Using Default.")
 	}
-	lLog.Info("Database connected")
+	logger.Info("Database connected")
 
 	return db, nil
 }

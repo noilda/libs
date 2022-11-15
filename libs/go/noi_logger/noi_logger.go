@@ -8,8 +8,8 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-func InitLogger(env string, logLevel string) (*zap.Logger, error) {
-	log, err := newLogger(env, logLevel)
+func New(env string, logLevel string) (*zap.Logger, error) {
+	log, err := setLogLevel(env, logLevel)
 	if err != nil {
 		return nil, fmt.Errorf("logger could not be initialized: %v", err)
 	}
@@ -17,7 +17,7 @@ func InitLogger(env string, logLevel string) (*zap.Logger, error) {
 	return log, nil
 }
 
-func newLogger(env string, logLevel string) (*zap.Logger, error) {
+func setLogLevel(env string, logLevel string) (*zap.Logger, error) {
 
 	var config zap.Config
 	if env == "dev" {
