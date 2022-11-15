@@ -16,7 +16,7 @@ import (
 type Operation func(ctx context.Context) error
 
 // gracefulShutdown waits for termination syscalls and doing clean up operations after received it
-func GracefulShutdown(ctx context.Context, timeout time.Duration, ops map[string]Operation, logger *zap.Logger) <-chan struct{} {
+func GracefulShutdown(ctx context.Context, timeout time.Duration, logger *zap.Logger, ops map[string]Operation) <-chan struct{} {
 	wait := make(chan struct{})
 	go func() {
 		s := make(chan os.Signal, 1)
