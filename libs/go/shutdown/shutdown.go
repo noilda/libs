@@ -47,11 +47,11 @@ func GracefulShutdown(ctx context.Context, timeout time.Duration, logger *zap.Lo
 
 				logger.Info("cleaning up: " + innerKey)
 				if err := innerOp(ctx); err != nil {
-					logger.Info("%s: clean up failed: " + innerKey + err.Error())
+					logger.Info(innerKey + ": clean up failed: " + err.Error())
 					return
 				}
 
-				logger.Info("%s was shutdown gracefully" + innerKey)
+				logger.Info(innerKey + " was shutdown gracefully")
 			}()
 		}
 
