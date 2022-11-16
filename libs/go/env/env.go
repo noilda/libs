@@ -7,29 +7,29 @@ import (
 	"github.com/spf13/viper"
 )
 
-func LoadConfig() (map[string]interface{}, error) {
-	//initiate a viper instance for common config
-	v := viper.New()
-	//set config for all viper instances
-	v.SetConfigType("env")
-	v.SetConfigName("secrets")
-	v.AddConfigPath("../../../")
-	err := v.ReadInConfig()
-	if err != nil {
-		return nil, fmt.Errorf("error reading file. Error: %v", err)
-	}
-	c := v.AllSettings()
+func LoadConfig(paths []string) (map[string]interface{}, error) {
 
-	//read from config file within project
-	viper.AddConfigPath(".")
-	err = viper.ReadInConfig()
-	if err != nil {
-		return nil, fmt.Errorf("error reading file. Error: %v", err)
-	}
 	//read config from env and override previously set config
 	viper.AutomaticEnv()
-	//merge config of two config files
-	viper.MergeConfigMap(c)
+
+	for _, path := range paths {
+
+		//initiate a viper instance for common config
+		v := viper.New()
+
+		//set config for all viper instances
+		v.SetConfigFile(path)
+
+		err := v.ReadInConfig()
+		if err != nil {
+			return nil, fmt.Errorf("error reading file. Error: %v", err)
+		}
+		c := v.AllSettings()
+
+		//merge config
+		viper.MergeConfigMap(c)
+	}
+
 	//get all config
 	rawConfig := viper.AllSettings()
 	var a []string
